@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <title>Word Guess Game - Hangman</title>
+</head>
+<body>
+    <header>
+        <h1>HANGMAN</h1>    
+    </header>
+
+    <summary>
+        <p>Wins: <span id="wins"></span></p>
+        <p>Defeats: <span id="defeats"></span></p>
+        <p>Guesses Remained: <span id="guessesRemained"></span></p>
+        <p>Letters Guessed: <span id="lettersGuessed"></span></p>
+    </summary>
+    
+
+    <aside id="word"></aside>
+    
+    <p id="message">Press any key to get started!</p>    
+
+    <div class="hangman"> 
+        <img src="assets/images/hangman-9.png" id="hm9" alt="hangman" z-index="0" class="animated zoomIn">
+        <img src="assets/images/hangman-8.png" id="hm8" alt="hangman" z-index="1" class="animated swing">
+        <img src="assets/images/hangman-7.png" id="hm7" alt="hangman" z-index="2" class="animated shake">
+        <img src="assets/images/hangman-6.png" id="hm6" alt="hangman" z-index="3" class="animated slideInDown">
+        <img src="assets/images/hangman-5.png" id="hm5" alt="hangman" z-index="4" class="animated slideInLeft">
+        <img src="assets/images/hangman-4.png" id="hm4" alt="hangman" z-index="5" class="animated slideInRight">
+        <img src="assets/images/hangman-3.png" id="hm3" alt="hangman" z-index="6" class="animated slideInUp">
+        <img src="assets/images/hangman-2.png" id="hm2" alt="hangman" z-index="7" class="animated slideInUp">
+        <img src="assets/images/hangman-1.png" id="hm1" alt="hangman" z-index="8" class="animated fadeInDown">
+    </div>
+
+    <div class="keyboard">
+
+
+    </div>
+
+    <script src="assets/javascript/game.js"></script>
+</body>
+</html>
