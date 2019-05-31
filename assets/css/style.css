@@ -5,6 +5,11 @@
     font-family: 'Gloria Hallelujah', Arial, Helvetica, sans-serif;
 }
 
+header{
+    text-align: center;
+}
+
+
 aside div{
     display: inline;
     border-bottom: 1px solid #000;
@@ -39,6 +44,10 @@ p#message{
     left: 0;
     top: 0;
     display: none;
+
+    /* animation-duration: 5s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;     */
 }
 .hangman img:first-child{
     display: block;
