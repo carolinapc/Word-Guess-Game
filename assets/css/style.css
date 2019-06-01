@@ -1,21 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
 
 *{
-    box-sizing: border-box;
     font-family: 'Gloria Hallelujah', Arial, Helvetica, sans-serif;
 }
-
-header{
-    text-align: center;
+body{
+    background-image: url('../images/background.png');
+    position: relative;
+    top: 0;
 }
-
-
+h1 {
+    padding: 20px;
+}
+aside{
+    min-height: 80px;
+    margin-top: 30px;
+}
 aside div{
     display: inline;
     border-bottom: 1px solid #000;
     margin-right: 5px;
-    padding: 10px;
-    widows: 10px;
+    padding: 5px;
+    margin: 0 5px;
+    font-size: 20px;
+    min-width: 20px;
 }
 
 aside div:empty{
@@ -33,24 +40,41 @@ aside div:empty:before{
 
 p#message{
     color: green;
+    padding: 20px;
+    min-height: 100px;
+    height: 100px;
+    text-align: center;
 }
 
 .hangman{
     position: relative;
     left: 0;
+
 }
 .hangman img{
     position: absolute;
-    left: 0;
+    right: 0;
     top: 0;
     display: none;
-
-    /* animation-duration: 5s;
-    animation-delay: 3s;
-    animation-iteration-count: infinite;     */
 }
 .hangman img:first-child{
     display: block;
 }
 
+ul{
+    list-style: none;
+    padding-top: 30px;
+}
+li {
+    padding: 5px;
+    font-size: 14px;
+    position: relative;
+    left: 0;
+}
+li span {
+    text-align: right;
+    float: right;
+    color: green;
+    font-weight: bold;
+}
 
