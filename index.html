@@ -10,37 +10,37 @@
     <title>Word Guess Game - Hangman</title>
 </head>
 <body>
-    <div class="container">
-    
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1>HANGMAN</h1>  
-                <h7>&copy; 2019 by Carolina Cavalcanti</h7>            
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <header>
+                    <img class="site-img" src="assets/images/music.png" alt="icon">
+                    <h1>HANGMAN</h1>  
+                    <h4>POP SINGERS </h4>  
+                </header>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <section>
+                    <div class="shadow-sm p-1 mb-3 bg-white rounded">Wins: <span id="wins">0</span></div>
+                    <div class="shadow-sm p-1 mb-3 bg-white rounded">Loses: <span id="defeats">0</span></div>
+                    <div class="shadow-sm p-1 mb-3 bg-white rounded">Guesses Remained: <span id="guessesRemained"></span></div>
+                </section>          
+            </div>                      
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <img id="singer" src="assets/images/none.png" class="singer animated rollIn shadow bg-white border rounded-circle" width="100" alt="">
                 <p id="message" class="text-center">Press any key to get started!</p>            
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
                 <aside id="word"></aside>
             </div>
-        </div>
-        
-        <div class="row">
             
-            <div class="col-md-8 col-xl-6 col-sm-12 col-xs-12 mr-auto">
-                <ul>
-                    <li class="shadow-sm p-1 mb-3 bg-white rounded">Wins: <span id="wins"></span></li>
-                    <li class="shadow-sm p-1 mb-3 bg-white rounded">Defeats: <span id="defeats"></span></li>
-                    <li class="shadow-sm p-1 mb-3 bg-white rounded">Guesses Remained: <span id="guessesRemained"></span></li>
-                    <li class="shadow-sm p-1 mb-3 bg-white rounded">Letters Guessed: <span id="lettersGuessed"></span></li>
-                </ul>
-            </div>
-            <div class="col-md-4 col-xl-6 col-sm-12 col-xs-12 hangman">
+        </div>
+        <div class="row justify-content-center">
+            <col8 class="text-center">
+                <div class="hangman">
                     <img src="assets/images/hangman-9.png" id="hm9" alt="hangman" z-index="0" class="animated zoomIn">
                     <img src="assets/images/hangman-8.png" id="hm8" alt="hangman" z-index="1" class="animated swing">
                     <img src="assets/images/hangman-7.png" id="hm7" alt="hangman" z-index="2" class="animated shake">
@@ -50,11 +50,21 @@
                     <img src="assets/images/hangman-3.png" id="hm3" alt="hangman" z-index="6" class="animated slideInUp">
                     <img src="assets/images/hangman-2.png" id="hm2" alt="hangman" z-index="7" class="animated slideInUp">
                     <img src="assets/images/hangman-1.png" id="hm1" alt="hangman" z-index="8" class="animated rubberBand">
-                
-            </div>    
+                </div>                
+                <div class="lettersGuessed shadow-sm p-1 mb-3 bg-white rounded">
+                    Letters Guessed: 
+                    <span id="lettersGuessed"> </span>
+                </div>
+            </col8>
         </div>
-    </div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <footer>&copy; Carolina Cavalcanti</footer>
+            </div>
+        </div>
     
+    </div>
+                
 
     <script src="assets/javascript/game.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

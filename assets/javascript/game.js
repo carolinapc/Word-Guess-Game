@@ -1,7 +1,7 @@
-let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Ariana-Grande"];
+let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna"];
 
-const WINNER_MESSAGE = "CONGRATULATIONS!! YOU WON!<br>Press any key to start the next one!";
-const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to start the next one!";
+const WINNER_MESSAGE = "CONGRATULATIONS!! Press any key to the next!";
+const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!";
 const FINISH_MESSAGE = "THE END! THANK YOU!";
 const NUMBER_GUESSES = 8;
 
@@ -11,6 +11,8 @@ let viewLettersGuessed = document.getElementById("lettersGuessed");
 let viewGuessesRemained = document.getElementById("guessesRemained");
 let viewWord = document.getElementById("word");
 let viewMessage = document.getElementById("message");
+let viewSinger = document.getElementById("singer");
+let imgDirectory = "assets/images/";
 
 function isLetter(a){
     var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
@@ -28,6 +30,7 @@ let game = {
     
     reset: function(){
         viewWord.innerHTML = "";
+        viewSinger.src = imgDirectory + "none.png";
         this.lettersGuessed = "";
         this.guessesRemained = NUMBER_GUESSES;
         this.totalLettersGuessed = 0;
@@ -79,6 +82,7 @@ let game = {
             console.log(game.word);
     
             game.started = true;
+            viewSinger.style.display = "inline";
             viewMessage.textContent = "";
     
         }
@@ -124,17 +128,18 @@ let game = {
 
     winner: function(){
         game.wins++;
-
+        viewSinger.src = imgDirectory + game.word + ".jpeg";
         this.end(WINNER_MESSAGE);
     },
 
     loser: function(){
         game.defeats++;
-
+        viewSinger.style.display = "none";
         this.end(DEFEAT_MESSAGE);
     },
 
     terminate: function(){
+        viewSinger.style.visibility = "hidden";
         this.end(FINISH_MESSAGE);
 
     },

@@ -10,24 +10,28 @@ body{
 }
 h1 {
     padding: 20px;
+    text-align: center;
 }
 aside{
     min-height: 80px;
-    margin-top: 30px;
+    margin-top: 100px;
 }
 aside div{
     display: inline;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid green;
     margin-right: 5px;
     padding: 5px;
     margin: 0 5px;
-    font-size: 20px;
-    min-width: 20px;
+    font-size: 25px;
+    min-width: 25px;
+    max-width: 25px;
+    width: 25px;
+    color: darkred;
 }
 
 aside div:empty{
     content: "-";
-    border-color: #fff;
+    border: 0;
 
     animation-duration: 5s;
     animation-delay: 3s;
@@ -41,40 +45,102 @@ aside div:empty:before{
 p#message{
     color: green;
     padding: 20px;
-    min-height: 100px;
-    height: 100px;
+    min-height: 40px;
+    height: 40px;
     text-align: center;
 }
 
 .hangman{
     position: relative;
-    left: 0;
+    left: 280px;
+    top: -190px;
 
 }
 .hangman img{
     position: absolute;
-    right: 0;
-    top: 0;
+    left: -20px;
+    top: 0px;
     display: none;
+    width: 150px;
 }
 .hangman img:first-child{
     display: block;
 }
 
-ul{
-    list-style: none;
-    padding-top: 30px;
-}
-li {
-    padding: 5px;
-    font-size: 14px;
+header{
     position: relative;
-    left: 0;
+    top: 0;
+    width: 500px;
+    margin: auto;
 }
-li span {
-    text-align: right;
-    float: right;
-    color: green;
+h4 {
+    margin-left: 60px;
+    color: darkred;
     font-weight: bold;
+    text-align: center;
+}
+.site-img{
+    width: 180px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
+section {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+section div {
+    padding: 5px;
+    display: flex;
+    font-size: 12px;
+    flex-direction: row;
+    margin-right: 10px;
+    min-width: 100px;
+}
+section div span {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    min-width: 50px;
+    background-color: green;
+    border-radius: 10px;
+    margin-left: 10px;
+
+    
+}
+.lettersGuessed {
+    text-align: left;
+    font-size: 12px;
+    max-width: 400px; 
+    display: block;
+    width: 400px;
+    margin-top: 0px;
+
+}
+.lettersGuessed span{
+    display: block;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    background-color: green;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 2px 5px;
+    text-align: center;
+    min-height: 20px;
+}
+
+.singer{
+    display: none;
+}
+
+footer{
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+}
