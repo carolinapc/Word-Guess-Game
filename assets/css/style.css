@@ -14,7 +14,7 @@ h1 {
 }
 aside{
     min-height: 80px;
-    margin-top: 100px;
+    margin-top: 0px;
 }
 aside div{
     display: inline;
@@ -47,24 +47,36 @@ p#message{
     padding: 20px;
     min-height: 40px;
     height: 40px;
+    margin-top: 200px;
     text-align: center;
 }
 
+.wrap-hangman{
+    width: 300px;
+}
 .hangman{
     position: relative;
-    left: 280px;
-    top: -190px;
+    left: 250px;
+    top: -70px;
 
 }
 .hangman img{
     position: absolute;
-    left: -20px;
-    top: 0px;
-    display: none;
+    left: -15px;
+    top: -285px;
     width: 150px;
+    display: none;
 }
 .hangman img:first-child{
     display: block;
+}
+
+
+.hangman .singer{
+    display: none;
+    left: -240px;
+    top: -250px;
+
 }
 
 header{
@@ -118,7 +130,7 @@ section div span {
     max-width: 400px; 
     display: block;
     width: 400px;
-    margin-top: 0px;
+    margin-top: 10px;
 
 }
 .lettersGuessed span{
@@ -134,9 +146,6 @@ section div span {
     min-height: 20px;
 }
 
-.singer{
-    display: none;
-}
 
 footer{
     padding: 10px;
