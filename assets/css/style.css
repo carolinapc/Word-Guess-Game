@@ -3,6 +3,13 @@
 *{
     font-family: 'Gloria Hallelujah', Arial, Helvetica, sans-serif;
 }
+html,body{
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
 body{
     background-image: url('../images/background.png');
 }
@@ -165,11 +172,60 @@ button{
     font-size: 14px;
     display: none;
     margin: 1px;
-    padding: 5px 10px;
+    padding: 6px 10px;
 }
 
 @media screen and (max-width: 640px){
     button{
         display: inline;
     }
+    .hangman img{
+    
+        left: -40px;
+    }
+    .hangman .singer{
+        left: -200px;
+    }
+    .site-img{
+        width: 150px;
+        top: 20px;
+        left: -50px;
+    }
+    .lettersGuessed{
+        width: 370px;
+    }
+}
+
+@media screen and (max-width: 320px){
+    button{
+        display: inline;
+        margin:0;
+    }
+    h4 {
+        margin-left: 100px;
+    }
+    .site-img{
+        width: 130px;
+        top: 30px;
+        left: -20px;
+    }
+
+    section div{
+        margin-right: 0;
+    }
+    .lettersGuessed{
+        width: 310px;
+        
+    }
+    aside div{
+        font-size: 12px;
+    }
+    .hangman img{
+    
+        left: -80px;
+    }
+    .hangman .singer{
+        left: -240px;
+    }
+
 }
