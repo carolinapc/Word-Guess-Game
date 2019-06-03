@@ -1,5 +1,5 @@
-//let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna"];
-let popSingers = ["Shakira"];
+let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran"];
+
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!!";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!";
 const FINISH_MESSAGE = "THE END! THANK YOU!";
@@ -234,14 +234,4 @@ document.body.onload = function(){
             
     };
 
-    // var singer = document.getElementById("singer");
-    // //creates the images for the singers
-    // for(var i=0; i < popSingers.length; i++) {
-    //     var element = popSingers[i].replace("-","").toUpperCase();
-    //     var img = document.createElement("img");
-    //     img.id = element;
-    //     img.src = imgDirectory + element + ".jpg";
-    //     img.setAttribute("class","singer animated rollIn shadow bg-white border rounded-circle");
-    //     singer.append(img); 
-    // }
 }
