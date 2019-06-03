@@ -1,5 +1,15 @@
 //** GLOBAL VARIABLES **/
-var popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran", "Bruno-Mars", "Sia"];
+var popSingers = ["Shakira", 
+                  "Pink", 
+                  "Lady-Gaga", 
+                  "Katy-Perry", 
+                  "Beyonce", 
+                  "Adele", 
+                  "Rihanna", 
+                  "Madonna", 
+                  "Ed-Sheeran", 
+                  "Bruno-Mars", 
+                  "Sia"];
 
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
@@ -17,9 +27,17 @@ var imgDirectory = "assets/images/";
 //*********************/
 
 //** GLOBAL FUNCTIONS **/
-function isvarter(a){
-    var varters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
-    return (varters.indexOf(a) >= 0);
+function isLetter(a){
+    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
+    return (letters.indexOf(a) >= 0);
+}
+function createSingerImg(singer){
+    var img = document.createElement("img");
+    
+    img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
+    img.setAttribute("src", "assets/images/"+singer+".jpg");
+    img.id = singer;
+    document.getElementById("singer").appendChild(img);    
 }
 //*********************/
 
@@ -33,7 +51,7 @@ var game = {
     started: false,
     totallettersGuessed: 0,
     word: "",
-    
+
     reset: function(){
         viewWord.innerHTML = "";
         if(game.word != "")
@@ -42,14 +60,14 @@ var game = {
         document.getElementById("singerNone").style.display = "inline";
         document.getElementById("wrongAnswer").style.display = "none";
 
-        this.lettersGuessed = "";
-        this.guessesRemained = NUMBER_GUESSES;
-        this.totallettersGuessed = 0;
-        for(var i=1; i <= this.guessesRemained; i++){
+        game.lettersGuessed = "";
+        game.guessesRemained = NUMBER_GUESSES;
+        game.totallettersGuessed = 0;
+        for(var i=1; i <= game.guessesRemained; i++){
             document.getElementById("hm"+i).style.display = "none";
         }
 
-        this.updateSummary();
+        game.updateSummary();
 
     },
 
@@ -57,7 +75,7 @@ var game = {
     start: function(){
 
         //reset values
-        this.reset();
+        game.reset();
 
         if(popSingers.length > 0)
         {
@@ -65,11 +83,11 @@ var game = {
             game.word = popSingers[indexSinger].toUpperCase(); //pick up the singer 
             popSingers.splice(indexSinger,1); //removes the singer from the list to avoid repetition
     
-            //creates an element div with element span inside for each varter of the word
+            //creates an element div with element span inside for each letter of the word
             var index=0;
             for(var i=0; i < game.word.length; i++){
                 
-                //the div tag will wrap the span tag which contains the varter in order to show the blank space
+                //the div tag will wrap the span tag which contains the letter in order to show the blank space
                 var div = document.createElement("div"); 
                 
     
@@ -98,22 +116,22 @@ var game = {
     
         }
         else{
-            this.terminate();
+            game.terminate();
         }
 
     },
     
-    //checks whether user hitted the varter and returns true or false
+    //checks whether user hitted the letter and returns true or false
     userGuessHitted: function(guess){
         var hitted = false;
-        this.alert("");
+        game.alert("");
 
-        //loop through the varters of the word 
+        //loop through the letters of the word 
         for(var i=0; i < game.word.length; i++){
             if(guess == game.word[i])
             {
                 document.getElementById(i).style.visibility = "visible";
-                this.totallettersGuessed++;
+                game.totallettersGuessed++;
                 hitted = true;
             }
         }
@@ -127,37 +145,41 @@ var game = {
 
     hangman: function(){
         
-        document.getElementById("hm"+this.guessesRemained).style.display = "block";
+        document.getElementById("hm"+game.guessesRemained).style.display = "block";
         game.guessesRemained--;
         
     },
 
     end: function (msg) {
         viewMessage.innerHTML = msg;
-        this.started = false;
+        game.started = false;
     },
 
     winner: function(){
         game.wins++;
+
         document.getElementById(game.word).style.display = "inline";
-        this.end(WINNER_MESSAGE);
+        document.getElementById("audioWin").play();
+        game.end(WINNER_MESSAGE);
     },
 
     loser: function(){
         game.defeats++;
+        document.getElementById("audioLose").play();
         for(var i=0; i<game.word.length; i++){
             document.getElementById(i).style.visibility = "visible";
         }
         document.getElementById("wrongAnswer").style.display = "inline";
-        this.end(DEFEAT_MESSAGE);
+        game.end(DEFEAT_MESSAGE);
     },
 
     terminate: function(){
+        document.getElementById("audioEnd").play();
         document.getElementById("hm9").style.display = "none";
         document.getElementById("singer").style.display = "none";
         document.getElementById("videoFrame").style.display = "inline";
 
-        this.end(FINISH_MESSAGE);
+        game.end(FINISH_MESSAGE);
 
     },
 
@@ -172,13 +194,13 @@ var game = {
 
         if(game.started) {
         
-            //check if the user type a varter
-            if(userGuess.length > 1 || !isvarter(userGuess)){
-                game.alert("You didn't type a varter!");
+            //check if the user type a letter
+            if(userGuess.length > 1 || !isLetter(userGuess)){
+                game.alert("You didn't type a letter!");
                 return;
             }
     
-            //check if the user already guessed this varter
+            //check if the user already guessed this letter
             if(game.lettersGuessed.indexOf(userGuess) < 0)
             {
                 game.lettersGuessed += userGuess + " ";
@@ -188,7 +210,7 @@ var game = {
                     game.hangman();
                 }
     
-                //check if the user hits all the varters to finish the game or if there are no more shots
+                //check if the user hits all the letters to finish the game or if there are no more shots
                 if(game.totallettersGuessed == game.word.length){
                     game.winner();
                 }
@@ -208,6 +230,15 @@ var game = {
     
         }
         else {
+
+            //creates the singer pictures
+            for(var i=0; i < popSingers.length; i++){
+                var singer = popSingers[i].replace("-","").toUpperCase();
+                if(document.getElementById(singer) == null)
+                    createSingerImg(singer);
+                
+            }
+        
             game.start();
         }
     
@@ -221,19 +252,19 @@ var game = {
 document.body.onload = function(){
     
     var keyboard = document.getElementById("keyboard");
-    var kbvarters = "QWERTYUIOP-ASDFGHJKL-ZXCVBNM";
+    var kbletters = "QWERTYUIOP-ASDFGHJKL-ZXCVBNM";
     //creates the keyboard buttons
-    for(i=0; i < kbvarters.length; i++){
+    for(i=0; i < kbletters.length; i++){
         var btn;
 
-        if(kbvarters[i] != "-")
+        if(kbletters[i] != "-")
         {
             btn = document.createElement("button");
-            btn.id = kbvarters[i];
+            btn.id = kbletters[i];
             btn.value = btn.id;
             btn.textContent = btn.id;
              
-            btn.setAttribute("onClick","game.play('"+kbvarters[i]+"')");
+            btn.setAttribute("onClick","game.play('"+kbletters[i]+"')");
         }
         else{
             btn = document.createElement("br");
@@ -242,16 +273,6 @@ document.body.onload = function(){
         keyboard.append(btn);
     }
 
-
-    for(var i=0; i < popSingers.length; i++){
-        var singer = popSingers[i].replace("-","").toUpperCase();
-        var img = document.createElement("img");
-        //img.src = "assets/images/"+singer+".jpg";
-        img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
-        img.setAttribute("src", "assets/images/"+singer+".jpg");
-        img.id = singer;
-        document.getElementById("singer").appendChild(img);    
-    }
 }
 
 //************/

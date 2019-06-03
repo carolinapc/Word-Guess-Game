@@ -183,6 +183,9 @@ button{
     height: 200px;
     display: none;
 }
+.audio{
+    display: none;
+}
 
 
 @media screen and (max-width: 640px){
