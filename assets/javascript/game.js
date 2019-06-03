@@ -33,6 +33,8 @@ let game = {
             document.getElementById(game.word).style.display = "none";
 
         document.getElementById("singerNone").style.display = "inline";
+        document.getElementById("wrongAnswer").style.display = "none";
+        
         this.lettersGuessed = "";
         this.guessesRemained = NUMBER_GUESSES;
         this.totalLettersGuessed = 0;
@@ -84,6 +86,7 @@ let game = {
     
             game.started = true;
             document.getElementById("singerNone").style.display = "inline";
+            document.getElementById("wrongAnswer").style.display = "none";
             viewMessage.textContent = "";
     
         }
@@ -135,7 +138,7 @@ let game = {
 
     loser: function(){
         game.defeats++;
-        //document.getElementById(game.word).style.display = "inline";
+        document.getElementById("wrongAnswer").style.display = "inline";
         this.end(DEFEAT_MESSAGE);
     },
 

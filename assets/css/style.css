@@ -109,21 +109,25 @@ section div {
     padding: 5px;
     display: flex;
     font-size: 12px;
-    flex-direction: row;
     margin-right: 10px;
     min-width: 100px;
+    align-self: start;
+    justify-content: right;
+    align-content: flex-start;
 }
 section div span {
     text-align: center;
+    vertical-align: center;
     color: white;
     font-weight: bold;
-    min-width: 50px;
+    max-height: 30px;
+    min-width: 45px;
     background-color: green;
     border-radius: 10px;
-    margin-left: 10px;
-
+    margin-left: 5px;
     
 }
+
 .lettersGuessed {
     text-align: left;
     font-size: 12px;
