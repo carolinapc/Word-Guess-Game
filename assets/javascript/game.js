@@ -1,5 +1,5 @@
-//let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran"];
-let popSingers = ["Shakira"];
+let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran", "Bruno-Mars", "Sia"];
+
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
 const FINISH_MESSAGE = "THE END! THANK YOU FOR PLAYING!";
@@ -148,7 +148,7 @@ let game = {
     terminate: function(){
         document.getElementById("hm9").style.display = "none";
         document.getElementById("singer").style.display = "none";
-        document.getElementById("video").style.display = "inline";
+        document.getElementById("videoFrame").style.display = "inline";
 
         this.end(FINISH_MESSAGE);
 

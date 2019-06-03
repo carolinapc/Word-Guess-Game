@@ -57,9 +57,7 @@ p#message{
     text-align: center;
 }
 
-.wrap-hangman{
-    width: 300px;
-}
+
 .hangman{
     position: relative;
     left: 250px;
