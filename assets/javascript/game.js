@@ -240,7 +240,7 @@ document.body.onload = function(){
         var element = popSingers[i].replace("-","").toUpperCase();
         var img = document.createElement("img");
         img.id = element;
-        img.src = imgDirectory + element + ".jpeg";
+        img.src = imgDirectory + element + ".jpg";
         img.setAttribute("class","singer animated rollIn shadow bg-white border rounded-circle");
         singer.append(img); 
     }
