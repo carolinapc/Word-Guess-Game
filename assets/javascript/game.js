@@ -13,7 +13,7 @@ var popSingers = ["Shakira",
 
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
-const FINISH_MESSAGE = "THE END! THANK YOU FOR PLAYING!";
+const FINISH_MESSAGE = "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page restart!";
 const NUMBER_GUESSES = 8;
 
 var viewWins = document.getElementById("wins");
@@ -179,7 +179,8 @@ var game = {
         document.getElementById("singer").style.display = "none";
         document.getElementById("videoFrame").style.display = "inline";
 
-        game.end(FINISH_MESSAGE);
+        var info = "You won " + game.wins + " and lost " + game.defeats + " from " + (game.wins + game.defeats) + " words!";
+        game.end(FINISH_MESSAGE.replace("[info]",info));
 
     },
 
