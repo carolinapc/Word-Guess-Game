@@ -175,6 +175,18 @@ button{
     padding: 6px 10px;
 }
 
+.video{
+    position: absolute;
+    left: -200px;
+    top: -280px;
+    max-width: 300px;
+    border-radius: 10px;
+    border: 10px solid green;
+    height: 200px;
+    display: none;
+}
+
+
 @media screen and (max-width: 640px){
     button{
         display: inline;
@@ -194,7 +206,13 @@ button{
     .lettersGuessed{
         width: 370px;
     }
+    .video{
+        left: -220px;
+    }
+
 }
+
+
 
 @media screen and (max-width: 320px){
     button{
@@ -227,5 +245,7 @@ button{
     .hangman .singer{
         left: -240px;
     }
-
+    .video{
+        left: -245px;
+    }
 }
