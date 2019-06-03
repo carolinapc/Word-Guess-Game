@@ -42,7 +42,7 @@
         </div>
         <div class="row justify-content-center">
             <col8 class="text-center">
-                <div class="hangman">
+                <div class="hangman" id="hangman">
                         <img src="assets/images/hangman-9.png" id="hm9" alt="hangman" z-index="0" class="animated zoomIn">
                         <img src="assets/images/hangman-8.png" id="hm8" alt="hangman" z-index="1" class="animated swing">
                         <img src="assets/images/hangman-7.png" id="hm7" alt="hangman" z-index="2" class="animated shake">
@@ -52,7 +52,10 @@
                         <img src="assets/images/hangman-3.png" id="hm3" alt="hangman" z-index="6" class="animated slideInUp">
                         <img src="assets/images/hangman-2.png" id="hm2" alt="hangman" z-index="7" class="animated slideInUp">
                         <img src="assets/images/hangman-1.png" id="hm1" alt="hangman" z-index="8" class="animated rubberBand">
-                        <img id="singer" src="assets/images/none.png" class="singer animated rollIn shadow bg-white border rounded-circle" width="100" alt="">
+                        <div id="singer">
+                            <img id="singerNone" src="assets/images/none.png" class="singer animated rollIn shadow bg-white border rounded-circle" width="100" alt="">
+                        </div>
+
                     </div>                
 
                 <div class="lettersGuessed shadow-sm p-1 mb-3 bg-white rounded">

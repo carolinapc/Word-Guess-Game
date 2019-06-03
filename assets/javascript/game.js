@@ -11,7 +11,6 @@ let viewLettersGuessed = document.getElementById("lettersGuessed");
 let viewGuessesRemained = document.getElementById("guessesRemained");
 let viewWord = document.getElementById("word");
 let viewMessage = document.getElementById("message");
-let viewSinger = document.getElementById("singer");
 let imgDirectory = "assets/images/";
 
 function isLetter(a){
@@ -30,7 +29,10 @@ let game = {
     
     reset: function(){
         viewWord.innerHTML = "";
-        viewSinger.src = imgDirectory + "none.png";
+        if(game.word != "")
+            document.getElementById(game.word).style.display = "none";
+
+        document.getElementById("singerNone").style.display = "inline";
         this.lettersGuessed = "";
         this.guessesRemained = NUMBER_GUESSES;
         this.totalLettersGuessed = 0;
@@ -79,10 +81,9 @@ let game = {
             
             //removes dashes in the word to ignore it on the count
             game.word = game.word.replace("-","");
-            console.log(game.word);
     
             game.started = true;
-            viewSinger.style.display = "inline";
+            document.getElementById("singerNone").style.display = "inline";
             viewMessage.textContent = "";
     
         }
@@ -128,18 +129,18 @@ let game = {
 
     winner: function(){
         game.wins++;
-        viewSinger.src = imgDirectory + game.word + ".jpeg";
+        document.getElementById(game.word).style.display = "inline";
         this.end(WINNER_MESSAGE);
     },
 
     loser: function(){
         game.defeats++;
-        viewSinger.style.display = "none";
+        //document.getElementById(game.word).style.display = "inline";
         this.end(DEFEAT_MESSAGE);
     },
 
     terminate: function(){
-        viewSinger.style.visibility = "hidden";
+        document.getElementById("singer").style.visibility = "hidden";
         this.end(FINISH_MESSAGE);
 
     },
@@ -231,8 +232,16 @@ document.body.onload = function(){
 
         keyboard.append(btn);
             
-            
-        
-            
     };
+
+    var singer = document.getElementById("singer");
+    //creates the images for the singers
+    for(var i=0; i < popSingers.length; i++) {
+        var element = popSingers[i].replace("-","").toUpperCase();
+        var img = document.createElement("img");
+        img.id = element;
+        img.src = imgDirectory + element + ".jpeg";
+        img.setAttribute("class","singer animated rollIn shadow bg-white border rounded-circle");
+        singer.append(img); 
+    }
 }
