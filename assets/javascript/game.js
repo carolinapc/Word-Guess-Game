@@ -9,11 +9,13 @@ var popSingers = ["Shakira",
                   "Madonna", 
                   "Ed-Sheeran", 
                   "Bruno-Mars", 
-                  "Sia"];
+                  "Sia",
+                  "Ava-Max",
+                  "Luis-Fonsi"];
 
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
-const FINISH_MESSAGE = "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page restart!";
+const FINISH_MESSAGE = "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page to restart!";
 const NUMBER_GUESSES = 8;
 
 var viewWins = document.getElementById("wins");
