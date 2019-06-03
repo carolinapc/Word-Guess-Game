@@ -153,3 +153,18 @@ footer{
     position: relative;
     bottom: 0;
 }
+
+button{
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none;
+}
+
+@media screen and (max-width: 640px){
+    button{
+        display: inline;
+    }
+}

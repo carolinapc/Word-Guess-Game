@@ -208,3 +208,31 @@ document.onkeyup = function(event) {
     
     game.play(userGuess);
 };
+
+document.body.onload = function(){
+    var keyboard = document.getElementById("keyboard");
+    var kbLetters = "QWERTYUIOP-ASDFGHJKL-ZXCVBNM";
+    //creates the keyboard buttons
+    for(i=0; i < kbLetters.length; i++){
+        var btn;
+
+        if(kbLetters[i] != "-")
+        {
+            btn = document.createElement("button");
+            btn.id = kbLetters[i];
+            btn.value = btn.id;
+            btn.textContent = btn.id;
+             
+            btn.setAttribute("onClick","game.play('"+kbLetters[i]+"')");
+        }
+        else{
+            btn = document.createElement("br");
+        }
+
+        keyboard.append(btn);
+            
+            
+        
+            
+    };
+}
