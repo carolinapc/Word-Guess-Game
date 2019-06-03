@@ -5,8 +5,6 @@
 }
 body{
     background-image: url('../images/background.png');
-    position: relative;
-    top: 0;
 }
 h1 {
     padding: 20px;
@@ -48,6 +46,7 @@ p#message{
     min-height: 40px;
     height: 40px;
     margin-top: 200px;
+    margin-bottom: 35px;
     text-align: center;
 }
 
@@ -82,7 +81,7 @@ p#message{
 header{
     position: relative;
     top: 0;
-    width: 500px;
+    width: 300px;
     margin: auto;
 }
 h4 {
@@ -95,7 +94,7 @@ h4 {
     width: 180px;
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: -80px;
 }
 
 section {
@@ -165,7 +164,7 @@ button{
     border-radius: 5px;
     font-size: 14px;
     display: none;
-    margin: 2px;
+    margin: 1px;
     padding: 5px 10px;
 }
 

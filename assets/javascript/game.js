@@ -1,8 +1,8 @@
 let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran"];
 
-const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!!";
-const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!";
-const FINISH_MESSAGE = "THE END! THANK YOU!";
+const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
+const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
+const FINISH_MESSAGE = "THE END! THANK YOU FOR PLAYING!";
 const NUMBER_GUESSES = 8;
 
 let viewWins = document.getElementById("wins");
@@ -34,7 +34,7 @@ let game = {
 
         document.getElementById("singerNone").style.display = "inline";
         document.getElementById("wrongAnswer").style.display = "none";
-        
+
         this.lettersGuessed = "";
         this.guessesRemained = NUMBER_GUESSES;
         this.totalLettersGuessed = 0;
@@ -138,12 +138,16 @@ let game = {
 
     loser: function(){
         game.defeats++;
+        for(var i=0; i<game.word.length; i++){
+            document.getElementById(i).style.visibility = "visible";
+        }
         document.getElementById("wrongAnswer").style.display = "inline";
         this.end(DEFEAT_MESSAGE);
     },
 
     terminate: function(){
-        document.getElementById("singer").style.visibility = "hidden";
+        document.getElementById("hangman").style.display = "none";
+
         this.end(FINISH_MESSAGE);
 
     },
