@@ -1,30 +1,37 @@
-let popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran", "Bruno-Mars", "Sia"];
+//** GLOBAL VARIABLES **/
+var popSingers = ["Shakira", "Pink", "Lady-Gaga", "Katy-Perry", "Beyonce", "Adele", "Rihanna", "Madonna", "Ed-Sheeran", "Bruno-Mars", "Sia"];
 
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
 const FINISH_MESSAGE = "THE END! THANK YOU FOR PLAYING!";
 const NUMBER_GUESSES = 8;
 
-let viewWins = document.getElementById("wins");
-let viewDefeats = document.getElementById("defeats");
-let viewLettersGuessed = document.getElementById("lettersGuessed");
-let viewGuessesRemained = document.getElementById("guessesRemained");
-let viewWord = document.getElementById("word");
-let viewMessage = document.getElementById("message");
-let imgDirectory = "assets/images/";
+var viewWins = document.getElementById("wins");
+var viewDefeats = document.getElementById("defeats");
+var viewLettersGuessed = document.getElementById("lettersGuessed");
+var viewGuessesRemained = document.getElementById("guessesRemained");
+var viewWord = document.getElementById("word");
+var viewMessage = document.getElementById("message");
 
-function isLetter(a){
-    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
-    return (letters.indexOf(a) >= 0);
+var imgDirectory = "assets/images/";
+//*********************/
+
+//** GLOBAL FUNCTIONS **/
+function isvarter(a){
+    var varters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
+    return (varters.indexOf(a) >= 0);
 }
+//*********************/
 
-let game = {
+//** GAME OBJECT **/
+
+var game = {
     wins: 0,  
     defeats: 0, 
     lettersGuessed: "",
     guessesRemained: NUMBER_GUESSES,
     started: false,
-    totalLettersGuessed: 0,
+    totallettersGuessed: 0,
     word: "",
     
     reset: function(){
@@ -37,7 +44,7 @@ let game = {
 
         this.lettersGuessed = "";
         this.guessesRemained = NUMBER_GUESSES;
-        this.totalLettersGuessed = 0;
+        this.totallettersGuessed = 0;
         for(var i=1; i <= this.guessesRemained; i++){
             document.getElementById("hm"+i).style.display = "none";
         }
@@ -58,11 +65,11 @@ let game = {
             game.word = popSingers[indexSinger].toUpperCase(); //pick up the singer 
             popSingers.splice(indexSinger,1); //removes the singer from the list to avoid repetition
     
-            //creates an element div with element span inside for each letter of the word
+            //creates an element div with element span inside for each varter of the word
             var index=0;
             for(var i=0; i < game.word.length; i++){
                 
-                //the div tag will wrap the span tag which contains the letter in order to show the blank space
+                //the div tag will wrap the span tag which contains the varter in order to show the blank space
                 var div = document.createElement("div"); 
                 
     
@@ -96,17 +103,17 @@ let game = {
 
     },
     
-    //checks whether user hitted the letter and returns true or false
+    //checks whether user hitted the varter and returns true or false
     userGuessHitted: function(guess){
         var hitted = false;
         this.alert("");
 
-        //loop through the letters of the word 
+        //loop through the varters of the word 
         for(var i=0; i < game.word.length; i++){
             if(guess == game.word[i])
             {
                 document.getElementById(i).style.visibility = "visible";
-                this.totalLettersGuessed++;
+                this.totallettersGuessed++;
                 hitted = true;
             }
         }
@@ -165,13 +172,13 @@ let game = {
 
         if(game.started) {
         
-            //check if the user type a letter
-            if(userGuess.length > 1 || !isLetter(userGuess)){
-                game.alert("You didn't type a letter!");
+            //check if the user type a varter
+            if(userGuess.length > 1 || !isvarter(userGuess)){
+                game.alert("You didn't type a varter!");
                 return;
             }
     
-            //check if the user already guessed this letter
+            //check if the user already guessed this varter
             if(game.lettersGuessed.indexOf(userGuess) < 0)
             {
                 game.lettersGuessed += userGuess + " ";
@@ -181,8 +188,8 @@ let game = {
                     game.hangman();
                 }
     
-                //check if the user hits all the letters to finish the game or if there are no more shots
-                if(game.totalLettersGuessed == game.word.length){
+                //check if the user hits all the varters to finish the game or if there are no more shots
+                if(game.totallettersGuessed == game.word.length){
                     game.winner();
                 }
                 else if(game.guessesRemained == 0)
@@ -208,39 +215,51 @@ let game = {
     }
     
 };
+//************ */
 
-
-
-document.onkeyup = function(event) {
-
-    // Determines which key was pressed.
-    var userGuess = event.key.toUpperCase();
-    
-    game.play(userGuess);
-};
-
+//***ON LOAD FUNCTION */
 document.body.onload = function(){
+    
     var keyboard = document.getElementById("keyboard");
-    var kbLetters = "QWERTYUIOP-ASDFGHJKL-ZXCVBNM";
+    var kbvarters = "QWERTYUIOP-ASDFGHJKL-ZXCVBNM";
     //creates the keyboard buttons
-    for(i=0; i < kbLetters.length; i++){
+    for(i=0; i < kbvarters.length; i++){
         var btn;
 
-        if(kbLetters[i] != "-")
+        if(kbvarters[i] != "-")
         {
             btn = document.createElement("button");
-            btn.id = kbLetters[i];
+            btn.id = kbvarters[i];
             btn.value = btn.id;
             btn.textContent = btn.id;
              
-            btn.setAttribute("onClick","game.play('"+kbLetters[i]+"')");
+            btn.setAttribute("onClick","game.play('"+kbvarters[i]+"')");
         }
         else{
             btn = document.createElement("br");
         }
 
         keyboard.append(btn);
-            
-    };
+    }
 
+
+    for(var i=0; i < popSingers.length; i++){
+        var singer = popSingers[i].replace("-","").toUpperCase();
+        var img = document.createElement("img");
+        //img.src = "assets/images/"+singer+".jpg";
+        img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
+        img.setAttribute("src", "assets/images/"+singer+".jpg");
+        img.id = singer;
+        document.getElementById("singer").appendChild(img);    
+    }
 }
+
+//************/
+//*** MAIN ***/
+document.onkeyup = function(event) {
+    // Determines which key was pressed.
+    var userGuess = event.key.toUpperCase();
+    
+    game.play(userGuess);
+};
+//************/
