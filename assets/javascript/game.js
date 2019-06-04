@@ -19,11 +19,12 @@ var game = {
                 "Cristina-Aguilera",
                 "Miley-Cyrus",
                 "Luis-Fonsi",    
+                "Demi-Lovato",
                 "Michael-Jackson"],
 
     /**Constants */
-    WINNER_MESSAGE: "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing",
-    DEFEAT_MESSAGE: "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing",
+    WINNER_MESSAGE: "YOU WON! CONGRATULATIONS!<br>Press any key to continue...",
+    DEFEAT_MESSAGE: "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue...",
     FINISH_MESSAGE: "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page to restart!",
     NUMBER_GUESSES: 8,
     IMG_DIRECTORY: "assets/images/",
@@ -230,6 +231,7 @@ var game = {
         this.domVideoFrame.style.display = "inline";
         this.domKeyboard.style.display = "none";
         this.domWrapLettersGuessed.style.display = "none";
+        this.domKeyboard.style.display = "none";
 
         var info = "You won " + this.wins + " and lost " + this.defeats + " from " + (this.wins + this.defeats) + " words!";
         this.end(this.FINISH_MESSAGE.replace("[info]",info));
