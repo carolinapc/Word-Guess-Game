@@ -1,18 +1,4 @@
 //** GLOBAL VARIABLES **/
-var popSingers = ["Shakira", 
-                  "Pink", 
-                  "Lady-Gaga", 
-                  "Katy-Perry", 
-                  "Beyonce", 
-                  "Adele", 
-                  "Rihanna", 
-                  "Madonna", 
-                  "Ed-Sheeran", 
-                  "Bruno-Mars", 
-                  "Sia",
-                  "Ava-Max",
-                  "Luis-Fonsi"];
-
 const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
 const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
 const FINISH_MESSAGE = "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page to restart!";
@@ -26,26 +12,28 @@ var viewWord = document.getElementById("word");
 var viewMessage = document.getElementById("message");
 
 var imgDirectory = "assets/images/";
-//*********************/
 
-//** GLOBAL FUNCTIONS **/
-function isLetter(a){
-    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
-    return (letters.indexOf(a) >= 0);
-}
-function createSingerImg(singer){
-    var img = document.createElement("img");
-    
-    img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
-    img.setAttribute("src", "assets/images/"+singer+".jpg");
-    img.id = singer;
-    document.getElementById("singer").appendChild(img);    
-}
-//*********************/
 
 //** GAME OBJECT **/
 
 var game = {
+    popSingers: ["Shakira", 
+                "Pink", 
+                "Lady-Gaga", 
+                "Katy-Perry", 
+                "Beyonce", 
+                "Adele", 
+                "Rihanna", 
+                "Madonna", 
+                "Ed-Sheeran", 
+                "Bruno-Mars", 
+                "Sia",
+                "Ava-Max",
+                "Justin-Bieber",
+                "Shawn-Mendes",
+                "Ariana-Grande",
+                "Cristina-Aguilera",
+                "Luis-Fonsi"],    
     wins: 0,  
     defeats: 0, 
     lettersGuessed: "",
@@ -55,69 +43,86 @@ var game = {
     totallettersGuessed: 0,
     word: "",
 
+
+    isLetter: function(a){
+        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        return (letters.indexOf(a) >= 0);
+    },
+
+    createSingerImg: function(singer){
+        var img = document.createElement("img");
+        
+        img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
+        img.setAttribute("src", "assets/images/"+singer+".jpg");
+        img.setAttribute("alt",singer);
+        img.id = singer;
+        document.getElementById("singer").appendChild(img);    
+    },
+    
+
     reset: function(){
         viewWord.innerHTML = "";
-        if(game.word != "")
-            document.getElementById(game.word).style.display = "none";
+        if(this.word != "")
+            document.getElementById(this.word).style.display = "none";
 
         document.getElementById("singerNone").style.display = "inline";
         document.getElementById("wrongAnswer").style.display = "none";
 
-        game.lettersGuessed = "";
-        game.guessesRemained = NUMBER_GUESSES;
-        game.totallettersGuessed = 0;
-        for(var i=1; i <= game.guessesRemained; i++){
+        this.lettersGuessed = "";
+        this.guessesRemained = NUMBER_GUESSES;
+        this.totallettersGuessed = 0;
+        for(var i=1; i <= this.guessesRemained; i++){
             document.getElementById("hm"+i).style.display = "none";
         }
 
-        game.updateSummary();
+        this.updateSummary();
 
     },
 
     //starts the game/picks new word
     start: function(){
 
-        if(game.firstStart){
+        if(this.firstStart){
             //creates the singer pictures
-            for(var i=0; i < popSingers.length; i++){
-                var singer = popSingers[i].replace("-","").toUpperCase();
+            for(var i=0; i < this.popSingers.length; i++){
+                var singer = this.popSingers[i].replace("-","").toUpperCase();
                 if(document.getElementById(singer) == null)
-                    createSingerImg(singer);
+                    this.createSingerImg(singer);
                 
             }
             
             //play background sound and show the its controls
-            document.getElementById("bgsound").play();
             document.getElementById("bgsound").style.display = "inline";
-
-            game.firstStart = false;
+            document.getElementById("bgsound").play();
+            
+            this.firstStart = false;
 
         }
 
         //reset values
-        game.reset();
+        this.reset();
 
-        if(popSingers.length > 0)
+        if(this.popSingers.length > 0)
         {
-            var indexSinger = Math.floor(Math.random() * popSingers.length); //pick up one of the indexes of words randomly
-            game.word = popSingers[indexSinger].toUpperCase(); //pick up the singer 
-            popSingers.splice(indexSinger,1); //removes the singer from the list to avoid repetition
+            var indexSinger = Math.floor(Math.random() * this.popSingers.length); //pick up one of the indexes of words randomly
+            this.word = this.popSingers[indexSinger].toUpperCase(); //pick up the singer 
+            this.popSingers.splice(indexSinger,1); //removes the singer from the list to avoid repetition
     
             //creates an element div with element span inside for each letter of the word
             var index=0;
-            for(var i=0; i < game.word.length; i++){
+            for(var i=0; i < this.word.length; i++){
                 
                 //the div tag will wrap the span tag which contains the letter in order to show the blank space
                 var div = document.createElement("div"); 
                 
     
                 //check the dash of the word to ignore it 
-                if (game.word[i] != "-"){
+                if (this.word[i] != "-"){
                     var span = document.createElement("span"); 
                     
                     span.id = index++; 
                     span.style.visibility = "hidden"; //the span tag will be setted to visible when the user guesses it                
-                    span.textContent = game.word[i];         
+                    span.textContent = this.word[i];         
                     
                     div.appendChild(span); //includes the span tag into the content of the div tag
                     div.classList.add("animated","rotateInUpLeft");
@@ -127,16 +132,16 @@ var game = {
             }
             
             //removes dashes in the word to ignore it on the count
-            game.word = game.word.replace("-","");
+            this.word = this.word.replace("-","");
     
-            game.started = true;
+            this.started = true;
             document.getElementById("singerNone").style.display = "inline";
             document.getElementById("wrongAnswer").style.display = "none";
             viewMessage.textContent = "";
     
         }
         else{
-            game.terminate();
+            this.terminate();
         }
 
     },
@@ -144,14 +149,14 @@ var game = {
     //checks whether user hitted the letter and returns true or false
     userGuessHitted: function(guess){
         var hitted = false;
-        game.alert("");
+        this.alert("");
 
         //loop through the letters of the word 
-        for(var i=0; i < game.word.length; i++){
-            if(guess == game.word[i])
+        for(var i=0; i < this.word.length; i++){
+            if(guess == this.word[i])
             {
                 document.getElementById(i).style.visibility = "visible";
-                game.totallettersGuessed++;
+                this.totallettersGuessed++;
                 hitted = true;
             }
         }
@@ -165,32 +170,32 @@ var game = {
 
     hangman: function(){
         
-        document.getElementById("hm"+game.guessesRemained).style.display = "block";
-        game.guessesRemained--;
+        document.getElementById("hm"+this.guessesRemained).style.display = "block";
+        this.guessesRemained--;
         
     },
 
     end: function (msg) {
         viewMessage.innerHTML = msg;
-        game.started = false;
+        this.started = false;
     },
 
     winner: function(){
-        game.wins++;
+        this.wins++;
 
-        document.getElementById(game.word).style.display = "inline";
+        document.getElementById(this.word).style.display = "inline";
         document.getElementById("audioWin").play();
-        game.end(WINNER_MESSAGE);
+        this.end(WINNER_MESSAGE);
     },
 
     loser: function(){
-        game.defeats++;
+        this.defeats++;
         document.getElementById("audioLose").play();
-        for(var i=0; i<game.word.length; i++){
+        for(var i=0; i<this.word.length; i++){
             document.getElementById(i).style.visibility = "visible";
         }
         document.getElementById("wrongAnswer").style.display = "inline";
-        game.end(DEFEAT_MESSAGE);
+        this.end(DEFEAT_MESSAGE);
     },
 
     terminate: function(){
@@ -199,63 +204,63 @@ var game = {
         document.getElementById("singer").style.display = "none";
         document.getElementById("videoFrame").style.display = "inline";
 
-        var info = "You won " + game.wins + " and lost " + game.defeats + " from " + (game.wins + game.defeats) + " words!";
-        game.end(FINISH_MESSAGE.replace("[info]",info));
+        var info = "You won " + this.wins + " and lost " + this.defeats + " from " + (this.wins + this.defeats) + " words!";
+        this.end(FINISH_MESSAGE.replace("[info]",info));
 
     },
 
     updateSummary: function(){
-        viewGuessesRemained.textContent = game.guessesRemained;
-        viewLettersGuessed.textContent = game.lettersGuessed;
-        viewDefeats.textContent = game.defeats;
-        viewWins.textContent = game.wins;
+        viewGuessesRemained.textContent = this.guessesRemained;
+        viewLettersGuessed.textContent = this.lettersGuessed;
+        viewDefeats.textContent = this.defeats;
+        viewWins.textContent = this.wins;
     },
 
     play: function (userGuess){
 
-        if(game.started) {
+        if(this.started) {
         
             //check if the user type a letter
-            if(userGuess.length > 1 || !isLetter(userGuess)){
-                game.alert("You didn't type a letter!");
+            if(userGuess.length > 1 || !this.isLetter(userGuess)){
+                this.alert("You didn't type a letter!");
                 return;
             }
     
             //check if the user already guessed this letter
-            if(game.lettersGuessed.indexOf(userGuess) < 0)
+            if(this.lettersGuessed.indexOf(userGuess) < 0)
             {
-                game.lettersGuessed += userGuess + " ";
+                this.lettersGuessed += userGuess + " ";
     
                 //if user miss the guess decrease the amount of possible shots
-                if(!game.userGuessHitted(userGuess)){
-                    game.hangman();
+                if(!this.userGuessHitted(userGuess)){
+                    this.hangman();
                 }
     
                 //check if the user hits all the letters to finish the game or if there are no more shots
-                if(game.totallettersGuessed == game.word.length){
-                    game.winner();
+                if(this.totallettersGuessed == this.word.length){
+                    this.winner();
                 }
-                else if(game.guessesRemained == 0)
+                else if(this.guessesRemained == 0)
                 {
-                    game.loser();
+                    this.loser();
                 }       
                 else
                 {
-                    game.updateSummary();
+                    this.updateSummary();
                 }     
     
             }
             else{
-                game.alert("Ooops! You've already tried this one!");
+                this.alert("Ooops! You've already tried this one!");
             }
     
         }
         else {
         
-            game.start();
+            this.start();
         }
     
-        game.updateSummary();
+        this.updateSummary();
     }
     
 };

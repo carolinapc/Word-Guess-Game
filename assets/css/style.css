@@ -18,11 +18,17 @@ h1 {
     text-align: center;
 }
 aside{
-    min-height: 80px;
-    margin-top: 0px;
+    min-height: 50px;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
 }
 aside div{
-    display: inline;
+    
     border-bottom: 2px solid green;
     margin-right: 5px;
     padding: 5px;
@@ -176,7 +182,7 @@ button{
 .video{
     position: absolute;
     left: -200px;
-    top: -280px;
+    top: -260px;
     max-width: 300px;
     border-radius: 10px;
     border: 10px solid green;
