@@ -1,22 +1,4 @@
-//** GLOBAL VARIABLES **/
-const WINNER_MESSAGE = "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing";
-const DEFEAT_MESSAGE = "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing";
-const FINISH_MESSAGE = "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page to restart!";
-const NUMBER_GUESSES = 8;
-
-var viewWins = document.getElementById("wins");
-var viewDefeats = document.getElementById("defeats");
-var viewLettersGuessed = document.getElementById("lettersGuessed");
-var viewGuessesRemained = document.getElementById("guessesRemained");
-var viewWord = document.getElementById("word");
-var viewMessage = document.getElementById("message");
-
-var imgDirectory = "assets/images/";
-var soundDirectory = "assets/sounds/";
-
-
 //** GAME OBJECT **/
-
 var game = {
     popSingers: ["Shakira", 
                 "Pink", 
@@ -38,16 +20,45 @@ var game = {
                 "Miley-Cyrus",
                 "Luis-Fonsi",    
                 "Michael-Jackson"],
+
+    /**Constants */
+    WINNER_MESSAGE: "YOU WON! CONGRATULATIONS!<br>Press any key to continue playing",
+    DEFEAT_MESSAGE: "SORRY, NOT THIS TIME! TRY AGAIN!<br>Press any key to continue playing",
+    FINISH_MESSAGE: "THE END<br>[info]<br>THANK YOU FOR PLAYING!<br>Refresh the page to restart!",
+    NUMBER_GUESSES: 8,
+    IMG_DIRECTORY: "assets/images/",
+    SND_DIRECTORY: "assets/sounds/",
+
+    /**Variables */
     wins: 0,  
     defeats: 0, 
+    totallettersGuessed: 0,
     lettersGuessed: "",
-    guessesRemained: NUMBER_GUESSES,
+    guessesRemained: 8,
     started: false,
     firstStart: true,
-    totallettersGuessed: 0,
     word: "",
 
+    /**DOM Elements */
+    domWins: document.getElementById("wins"),
+    domDefeats: document.getElementById("defeats"),
+    domLettersGuessed: document.getElementById("lettersGuessed"),
+    domGuessesRemained: document.getElementById("guessesRemained"),
+    domWord: document.getElementById("word"),
+    domMessage: document.getElementById("message"),  
+    domWrapImgSinger: document.getElementById("singer"),  
+    domWrapLettersGuessed: document.getElementById("wrapLettersGuessed"),
+    domImgSingerNone: document.getElementById("singerNone"),
+    domImgWrongAnswer: document.getElementById("wrongAnswer"),
+    domBgSound: document.getElementById("bgsound"),
+    domAudioWin: document.getElementById("audioWin"),
+    domAudioLose: document.getElementById("audioLose"),
+    domAudioEnd: document.getElementById("audioEnd"),
+    domVideoFrame: document.getElementById("videoFrame"),
+    domKeyboard: document.getElementById("keyboard"),
+    domAudioSource: document.getElementById("audioSource"),
 
+    /**General Functions */
     isLetter: function(a){
         var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return (letters.indexOf(a) >= 0);
@@ -57,23 +68,23 @@ var game = {
         var img = document.createElement("img");
         
         img.setAttribute("class", "singer animated rollIn shadow bg-white border rounded-circle");
-        img.setAttribute("src", "assets/images/"+singer+".jpg");
+        img.setAttribute("src", this.IMG_DIRECTORY + singer + ".jpg");
         img.setAttribute("alt",singer);
         img.id = singer;
-        document.getElementById("singer").appendChild(img);    
+        this.domWrapImgSinger.appendChild(img);    
     },
     
-
+    /**Game Functions */
     reset: function(){
-        viewWord.innerHTML = "";
+        this.domWord.innerHTML = "";
         if(this.word != "")
             document.getElementById(this.word).style.display = "none";
 
-        document.getElementById("singerNone").style.display = "inline";
-        document.getElementById("wrongAnswer").style.display = "none";
+        this.domImgSingerNone.style.display = "inline";
+        this.domImgWrongAnswer.style.display = "none";
 
         this.lettersGuessed = "";
-        this.guessesRemained = NUMBER_GUESSES;
+        this.guessesRemained = this.NUMBER_GUESSES;
         this.totallettersGuessed = 0;
         for(var i=1; i <= this.guessesRemained; i++){
             document.getElementById("hm"+i).style.display = "none";
@@ -96,9 +107,9 @@ var game = {
             }
             
             //play background sound and show the its controls
-            document.getElementById("bgsound").style.display = "inline";
-            document.getElementById("bgsound").load();
-            document.getElementById("bgsound").play();
+            this.domBgSound.style.display = "inline";
+            //this.domBgSound.load();
+            this.domBgSound.play();
 
             this.firstStart = false;
 
@@ -133,16 +144,16 @@ var game = {
                     div.classList.add("animated","rotateInUpLeft");
                 }
                 
-                viewWord.appendChild(div); //includes the div tag into the aside tag
+                this.domWord.appendChild(div); //includes the div tag into the aside tag
             }
             
             //removes dashes in the word to ignore it on the count
             this.word = this.word.replace("-","");
     
             this.started = true;
-            document.getElementById("singerNone").style.display = "inline";
-            document.getElementById("wrongAnswer").style.display = "none";
-            viewMessage.textContent = "";
+            this.domImgSingerNone.style.display = "inline";
+            this.domImgWrongAnswer.style.display = "none";
+            this.domMessage.textContent = "";
     
         }
         else{
@@ -170,9 +181,10 @@ var game = {
     },
 
     alert: function(msg){
-        viewMessage.innerHTML = msg;
+        this.domMessage.innerHTML = msg;
     },
 
+    //show hangman images when the user misses a letter
     hangman: function(){
         
         document.getElementById("hm"+this.guessesRemained).style.display = "block";
@@ -180,51 +192,59 @@ var game = {
         
     },
 
+    //common action when the user wins or loses each battle
     end: function (msg) {
-        viewMessage.innerHTML = msg;
+        this.domMessage.innerHTML = msg;
         this.started = false;
     },
 
+    //actions when the user wins a battle
     winner: function(){
         this.wins++;
 
         document.getElementById(this.word).style.display = "inline";
-        document.getElementById("audioWin").play();
-        document.getElementById("audioSource").src = soundDirectory + this.word + ".mp3";
-        console.log(soundDirectory + this.word + ".mp3");
-        document.getElementById("bgsound").load();
-        document.getElementById("bgsound").play();
-        this.end(WINNER_MESSAGE);
+        this.domAudioWin.play();
+        this.domAudioSource.src = this.SND_DIRECTORY + this.word + ".mp3";
+        
+        this.domBgSound.load();
+        this.domBgSound.play();
+        this.end(this.WINNER_MESSAGE);
     },
 
+    //actions when the user loses a battle
     loser: function(){
         this.defeats++;
-        document.getElementById("audioLose").play();
+        this.domAudioLose.play();
         for(var i=0; i<this.word.length; i++){
             document.getElementById(i).style.visibility = "visible";
         }
-        document.getElementById("wrongAnswer").style.display = "inline";
-        this.end(DEFEAT_MESSAGE);
+        this.domImgWrongAnswer.style.display = "inline";
+        this.end(this.DEFEAT_MESSAGE);
     },
 
+    //actions when the game is over (no more battles/words to show)
     terminate: function(){
-        document.getElementById("audioEnd").play();
+        this.domAudioEnd.play();
         document.getElementById("hm9").style.display = "none";
-        document.getElementById("singer").style.display = "none";
-        document.getElementById("videoFrame").style.display = "inline";
+        this.domWrapImgSinger.style.display = "none";
+        this.domVideoFrame.style.display = "inline";
+        this.domKeyboard.style.display = "none";
+        this.domWrapLettersGuessed.style.display = "none";
 
         var info = "You won " + this.wins + " and lost " + this.defeats + " from " + (this.wins + this.defeats) + " words!";
-        this.end(FINISH_MESSAGE.replace("[info]",info));
+        this.end(this.FINISH_MESSAGE.replace("[info]",info));
 
     },
 
+    //uptades the score
     updateSummary: function(){
-        viewGuessesRemained.textContent = this.guessesRemained;
-        viewLettersGuessed.textContent = this.lettersGuessed;
-        viewDefeats.textContent = this.defeats;
-        viewWins.textContent = this.wins;
+        this.domGuessesRemained.textContent = this.guessesRemained;
+        this.domLettersGuessed.textContent = this.lettersGuessed;
+        this.domDefeats.textContent = this.defeats;
+        this.domWins.textContent = this.wins;
     },
 
+    //actions when the user play (press a key or click a button)
     play: function (userGuess){
 
         if(this.started) {
