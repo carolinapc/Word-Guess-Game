@@ -51,6 +51,7 @@ var game = {
     lettersGuessed: "",
     guessesRemained: NUMBER_GUESSES,
     started: false,
+    firstStart: true,
     totallettersGuessed: 0,
     word: "",
 
@@ -75,6 +76,23 @@ var game = {
 
     //starts the game/picks new word
     start: function(){
+
+        if(game.firstStart){
+            //creates the singer pictures
+            for(var i=0; i < popSingers.length; i++){
+                var singer = popSingers[i].replace("-","").toUpperCase();
+                if(document.getElementById(singer) == null)
+                    createSingerImg(singer);
+                
+            }
+            
+            //play background sound and show the its controls
+            document.getElementById("bgsound").play();
+            document.getElementById("bgsound").style.display = "inline";
+
+            game.firstStart = false;
+
+        }
 
         //reset values
         game.reset();
@@ -233,17 +251,6 @@ var game = {
     
         }
         else {
-
-            //creates the singer pictures
-            for(var i=0; i < popSingers.length; i++){
-                var singer = popSingers[i].replace("-","").toUpperCase();
-                if(document.getElementById(singer) == null)
-                    createSingerImg(singer);
-                
-            }
-
-            document.getElementById("bgsound").play();
-            document.getElementById("bgsound").style.display = "inline";
         
             game.start();
         }
