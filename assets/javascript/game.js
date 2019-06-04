@@ -12,6 +12,7 @@ var viewWord = document.getElementById("word");
 var viewMessage = document.getElementById("message");
 
 var imgDirectory = "assets/images/";
+var soundDirectory = "assets/sounds/";
 
 
 //** GAME OBJECT **/
@@ -19,21 +20,27 @@ var imgDirectory = "assets/images/";
 var game = {
     popSingers: ["Shakira", 
                 "Pink", 
-                "Lady-Gaga", 
-                "Katy-Perry", 
-                "Beyonce", 
-                "Adele", 
-                "Rihanna", 
-                "Madonna", 
                 "Ed-Sheeran", 
-                "Bruno-Mars", 
-                "Sia",
-                "Ava-Max",
-                "Justin-Bieber",
-                "Shawn-Mendes",
-                "Ariana-Grande",
-                "Cristina-Aguilera",
-                "Luis-Fonsi"],    
+                "Adele", 
+                "Ava-Max", 
+                "John-Legend", 
+                "Katy-Perry",
+                "Ariana-Grande",                
+                "Michael-Jackson"],
+    // popSingers: [
+    //             "Lady-Gaga", 
+    //             "Beyonce", 
+    //             "Rihanna", 
+    //             "Madonna", 
+    //             "Ed-Sheeran", 
+    //             "Bruno-Mars", 
+    //             "Sia",
+    //             "Justin-Bieber",
+    //             "Shawn-Mendes",
+    
+    //             "Cristina-Aguilera",
+    //             "Miley-Cyrus",
+    //             "Luis-Fonsi"],    
     wins: 0,  
     defeats: 0, 
     lettersGuessed: "",
@@ -93,8 +100,9 @@ var game = {
             
             //play background sound and show the its controls
             document.getElementById("bgsound").style.display = "inline";
+            document.getElementById("bgsound").load();
             document.getElementById("bgsound").play();
-            
+
             this.firstStart = false;
 
         }
@@ -185,6 +193,10 @@ var game = {
 
         document.getElementById(this.word).style.display = "inline";
         document.getElementById("audioWin").play();
+        document.getElementById("audioSource").src = soundDirectory + this.word + ".mp3";
+        console.log(soundDirectory + this.word + ".mp3");
+        document.getElementById("bgsound").load();
+        document.getElementById("bgsound").play();
         this.end(WINNER_MESSAGE);
     },
 
