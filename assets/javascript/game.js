@@ -241,6 +241,9 @@ var game = {
                     createSingerImg(singer);
                 
             }
+
+            document.getElementById("bgsound").play();
+            document.getElementById("bgsound").style.display = "inline";
         
             game.start();
         }
