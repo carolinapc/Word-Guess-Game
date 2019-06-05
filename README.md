@@ -16,7 +16,7 @@ There is a score that counts the number of wins and the loses for each word. In 
 
 Once the game is over (all the singers guessing attempts are completed) a video from youtube is shown containing a sequence of the best pop songs.
 
-[Play the Game!][https://carolinapc.github.io/Word-Guess-Game]
+[Play the Game!](https://carolinapc.github.io/Word-Guess-Game)
 
 ## Support
 
