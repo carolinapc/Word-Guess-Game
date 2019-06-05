@@ -20,7 +20,7 @@ Once the game is over (all the singers guessing attempts are completed) a video 
 
 ### Adding new singers
 
-* On the **game.js** file add the singer into the *popSinger* svariable. For singers with more then one word use **dash sign** (-) instead of spaces.
+* On the **game.js** file add the singer into the **popSinger** list. For singers with more then one word use **dash sign** (-) instead of spaces.
 * Add a *.jpg* file of the singer's picture (dimensions: 225px x 225px) into the **assets/images/** folder. The name of the sound **MUST** be **CAPITALIZED** and matched with the name of the singer without dashes or spaces.
 * Add a *.mp3* file of the singer's song into the **assets/sounds/** folder. The name of the sound **MUST** be **CAPITALIZED** and matched with the name of the singer without dashes or spaces.
 
