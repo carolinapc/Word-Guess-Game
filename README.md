@@ -15,3 +15,12 @@ If the user loses, the background sound remains the same a defeated sound effect
 There is a score that counts the number of wins and the loses for each word. In addition for every play there is a score for incorrect guessed letter that matches the build of the hangman.
 
 Once the game is over (all the singers guessing attempts are completed) a video from youtube is shown containing a sequence of the best pop songs.
+
+## Support
+
+### Adding new singers
+
+* 1 On the **game.js** file add the singer into the *popSinger* svariable. For singers with more then one word use **dash sign** (-) instead of spaces.
+* 1 Add a *.jpg* file of the singer's picture (dimensions: 225px x 225px) into the **assets/images/** folder. The name of the sound **MUST** be **CAPITALIZED** and matched with the name of the singer without dashes or spaces.
+* 1 Add a *.mp3* file of the singer's song into the **assets/sounds/** folder. The name of the sound **MUST** be **CAPITALIZED** and matched with the name of the singer without dashes or spaces.
+
