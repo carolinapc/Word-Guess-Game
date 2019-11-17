@@ -23,7 +23,7 @@ Once the game is over (all the singers guessing attempts are completed) a video 
 ## Techonologies Used
 
 - Vanilla Javascript
-- CSS
+- animate.css library
 
 ## Support
 
