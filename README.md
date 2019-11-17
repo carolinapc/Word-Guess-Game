@@ -18,6 +18,13 @@ Once the game is over (all the singers guessing attempts are completed) a video 
 
 [Play the Game!](https://carolinapc.github.io/Word-Guess-Game)
 
+![preview](https://carolinapc.github.io/assets/images/hangman.png)
+
+## Techonologies Used
+
+- Vanilla Javascript
+- CSS
+
 ## Support
 
 ### Adding new singers
